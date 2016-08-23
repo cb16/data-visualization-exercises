@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+    </head>
+    <body>
+		<svg width="700" height="700">
+			<g transform="translate(0,700) scale(1,-1)">
+
+			</g>
+		</svg>
+        <script type="text/javascript">
+			var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+			d3.select("g").selectAll("rect").data(dataset).enter().append("rect")
+			.attr("x", function(d,i) {return i * (500/dataset.length);})
+			.attr("height", function(d){return d * (500/dataset.length);})
+			.attr("width", 20)
+			.attr("y", 0)
+			.style("fill", "#6699ff");
+			d3.select("svg").selectAll("text").data(dataset).enter().append("text")
+			.attr("x", function(d,i) {return (i * (500/dataset.length)) + 2;})
+			.attr("y", function(d) {return 500 - (d * (500/dataset.length));})
+			//.attr("y", function(d) {return 500 - (d*(500/dataset.length))/2;})
+			.attr("dy", "0.5em")
+			.text(function(d){return d;})
+			.style("fill", "white");
+			//d3.select("body").selectAll("p").data(dataset).text(function(d){return "New paragraph! " + d;});
+			//d3.select("body").selectAll("p").data(dataset).enter().append("p").text("New paragraph!");
+        </script>
+    </body>
+</html>

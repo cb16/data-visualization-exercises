@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Page Template</title>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+    </head>
+    <body>
+   		<svg width="500" height="500">
+			<g transform="translate(0,700) scale(1,-1)">
+
+			</g>
+		</svg>
+		</br>
+		<button type="submit" onClick="generate()">Generate</button>
+        <script type="text/javascript">
+        	var dataset = [];
+        	function generate() {
+        		dataset = [];
+        		d3.select("g").selectAll("rect").data(dataset).exit().remove();
+        		for(var i = 0; i < 20; i++) {
+        			dataset[i] = Math.floor(Math.random()*100 + 1);
+        		}
+
+        		d3.select("g").selectAll("rect").data(dataset).enter().append("rect")
+				.attr("x", function(d,i) {return i * (500/dataset.length);})
+				.attr("height", function(d){return d * 5;})
+				.attr("width", 20)
+				.attr("y", 0)
+				.style("fill", "#6699ff");
+        	}
+        </script>
+    </body>
+</html>
